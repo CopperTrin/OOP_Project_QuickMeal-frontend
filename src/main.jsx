@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import Menu from './Menu.jsx';
+import App from './customer/App.jsx'
+import Menu from './restaurant_account/restaurant/Menu.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
