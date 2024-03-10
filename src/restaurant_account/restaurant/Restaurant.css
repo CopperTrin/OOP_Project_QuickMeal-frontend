@@ -1,0 +1,22 @@
+.restaurant-container {
+    background-color: #ffffff; /* เปลี่ยนสีพื้นหลังเป็นสีขาว */
+    border: 2px solid #040F0F; /* เพิ่มกรอบ */
+    border-radius: 5px;
+    padding: 100px;
+    margin: 20px;
+    width: 1000px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto; /* จัดให้อยู่กึ่งกลางในแนวนอน */
+}
+
+
+.restaurant-container h2 {
+    margin-bottom: 20px;
+}
+
+.restaurant-container p {
+    margin-bottom: 10px;
+}

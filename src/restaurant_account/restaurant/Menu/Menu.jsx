@@ -5,14 +5,14 @@ import axious from 'axios'
 const BASE_URL = 'http://127.0.0.1:8000'
 
 function Menu(){
-    const {restaurant} = useParams()
+    const {restaurant_name} = useParams()
     const [menues, setMenues] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     
-    async function fetchMenu(restaurant){
+    async function fetchMenu(restaurant_name){
         try{
             setIsLoading(true);
-            const response = await axious.get(`${BASE_URL}/${restaurant}`)
+            const response = await axious.get(`${BASE_URL}/${restaurant_name}`)
             setMenues(response.data)
         }
         catch (error){
@@ -26,8 +26,8 @@ function Menu(){
     async function deleteMenu(name_menu){
         try{
             setIsLoading(true)
-            await axious.delete(`${BASE_URL}/${restaurant}/${name_menu}`)
-            await fetchMenu(restaurant)
+            await axious.delete(`${BASE_URL}/${restaurant_name}/${name_menu}`)
+            await fetchMenu(restaurant_name)
         }catch (error){
             console.log('error' , error)
         }
@@ -37,7 +37,7 @@ function Menu(){
     }
 
     useEffect( () =>{
-    fetchMenu(restaurant)}
+    fetchMenu(restaurant_name)}
     ,[])
 
     return (

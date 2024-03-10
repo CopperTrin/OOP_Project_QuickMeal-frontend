@@ -1,0 +1,53 @@
+body {
+    background-color: #04b44c; /* เปลี่ยนสีพื้นหลัง body เป็นสีเขียวอ่อน */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+    align-items: center;
+}
+
+.button-container button {
+    margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+    padding: 15px 40px;
+    border: 2px solid #040F0F; /* เพิ่มกรอบ */
+    border-radius: 5px;
+    background-color: #ffffff; /* เปลี่ยนสีพื้นหลังเป็นเขียวอ่อน */
+    color: black; /* เปลี่ยนสีตัวอักษรเป็นสีขาว */
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 1000px;
+    text-align: center;
+    display: block; /* เพิ่ม display: block เพื่อให้ปุ่มเป็นองค์ปุ่มเต็มรูปแบบ */
+}
+
+.button-container button:hover {
+    background-color: #8b8384; /* เปลี่ยนสีพื้นหลังเมื่อโฮเวอร์เป็นเขียวเข้ม */
+}
+
+.profile-container {
+    background-color: #ffffff; /* เปลี่ยนสีพื้นหลังเป็นสีขาว */
+    border: 2px solid #040F0F; /* เพิ่มกรอบ */
+    border-radius: 5px;
+    padding: 100px;
+    margin: 20px;
+    width: 1000px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto; /* จัดให้อยู่กึ่งกลางในแนวนอน */
+}
+
+
+.profile-container h2 {
+    margin-bottom: 20px;
+}
+
+.profile-container p {
+    margin-bottom: 10px;
+}
+
+

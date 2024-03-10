@@ -1,0 +1,21 @@
+/* RequestedOrder.css */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.order-button {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background-color: #8b8384;
+}
+
+
+

@@ -1,10 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './customer/App.jsx'
-import Menu from './restaurant_account/restaurant/Menu.jsx';
+import Account from './restaurant_account/Main.jsx'
+import Restaurant from './restaurant_account/restaurant/Restaurant.jsx'
+import Menu from './restaurant_account/restaurant/Menu/Menu.jsx'
+import RequestOrder from './restaurant_account/restaurant/RequestOrder/RequestOrder.jsx'
+import RequestedOrder from './restaurant_account/restaurant/RequestedOrder/RequestedOrder.jsx'
+import HistoryOrder from './restaurant_account/restaurant/HistoryOrder/History.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
+  Link,
 } from "react-router-dom"
 
 const router = createBrowserRouter([
@@ -13,8 +19,28 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/:restaurant",
+    path: "/restaurant_account/:account_id",
+    element: <Account />,
+  },
+  {
+    path: "/:restaurant_name",
+    element: <Restaurant />,
+  },
+  {
+    path: "/:restaurant_name/menu",
     element: <Menu />,
+  },
+  {
+    path: "/:restaurant_name/request_order",
+    element: <RequestOrder />,
+  },
+  {
+    path: "/:restaurant_name/requested_order",
+    element: <RequestedOrder />,
+  },
+  {
+    path: "/:restaurant_name/history",
+    element: <HistoryOrder />,
   },
 ]);
 
