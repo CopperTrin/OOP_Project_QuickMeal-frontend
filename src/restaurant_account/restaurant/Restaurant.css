@@ -20,3 +20,27 @@
 .restaurant-container p {
     margin-bottom: 10px;
 }
+
+/* Restaurant.css */
+.button-container {
+    margin-top: 20px;
+}
+
+.button-container button {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #8b8384;
+}
+
+.button-container button:focus {
+    outline: none;
+}

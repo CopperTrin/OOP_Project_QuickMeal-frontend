@@ -14,6 +14,7 @@ function RestaurantAccount() {
     useEffect(() => {
         async function fetchData() {
             try {
+                setIsLoading(true)
                 const restaurant_response = await axios.get(`${BASE_URL}/restaurant_account/${account_id}`);
                 if (restaurant_response.data[account_id]) {
                     setRestaurants(restaurant_response.data[account_id]);
@@ -22,9 +23,12 @@ function RestaurantAccount() {
                 if (profile_response.data) {
                     setProfile(profile_response.data);
                 }
-                //setIsLoading(false);
-            } catch (error) {
+            } 
+            catch (error) {
                 console.log('error', error);
+            }
+            finally {
+                setIsLoading(false);
             }
         }
 

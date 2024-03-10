@@ -7,6 +7,7 @@ import Menu from './restaurant_account/restaurant/Menu/Menu.jsx'
 import RequestOrder from './restaurant_account/restaurant/RequestOrder/RequestOrder.jsx'
 import RequestedOrder from './restaurant_account/restaurant/RequestedOrder/RequestedOrder.jsx'
 import HistoryOrder from './restaurant_account/restaurant/HistoryOrder/History.jsx'
+import RequestOrderDetail from './restaurant_account/restaurant/RequestOrder/RequestOrderDetail.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
     path: "/:restaurant_name/history",
     element: <HistoryOrder />,
   },
+  {
+    path: "/:restaurant_name/request_order/:order_id",
+    element: <RequestOrderDetail />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

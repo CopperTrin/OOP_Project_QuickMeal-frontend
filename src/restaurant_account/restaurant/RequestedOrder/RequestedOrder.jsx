@@ -9,14 +9,19 @@ function RequestedOrder() {
     const { restaurant_name } = useParams();
     const [restaurantDetail, setRestaurantDetail] = useState(null); // กำหนดค่าเริ่มต้นเป็น null
     const [requestedOrderList, setRequestedOrderList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     async function fetchRestaurant(restaurant_name) {
         try {
-            const restaurant_response = await axios.get(`${BASE_URL}/show_restaurant_detail/${restaurant_name}`);
+            setIsLoading(true)
+            const restaurant_response = await axios.get(`${BASE_URL}/show_restaurant_detail_by_name/${restaurant_name}`);
             if (restaurant_response.data) {
                 setRestaurantDetail(restaurant_response.data);
             }
         } catch (error) {
             console.log('error', error);
+        }
+        finally {
+            setIsLoading(false);
         }
     }
     async function fetchRequestedOrderList(restaurantDetail) {
@@ -27,6 +32,9 @@ function RequestedOrder() {
             }
         } catch (error) {
             console.log('error', error);
+        }
+        finally {
+            setIsLoading(false);
         }
     }
     
@@ -39,13 +47,15 @@ function RequestedOrder() {
             fetchRequestedOrderList(restaurantDetail);
         }
     }, [restaurantDetail]);
-
+    console.log(restaurantDetail);
     return (
         <>
             <div className='restaurant-container'>
                 {restaurantDetail && ( // เช็คว่ามีค่าข้อมูลร้านอาหารหรือไม่ก่อนที่จะแสดงผล
                     <>
                         <p>Restaurant Name: {restaurantDetail.Restaurant_Name}</p>
+                        <p>Location: {restaurantDetail.Restaurant_Location}</p>
+                        <p>Rate: {restaurantDetail.Rate}</p>
                     </>
                 )}
             </div>

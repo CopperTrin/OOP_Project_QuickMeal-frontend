@@ -7,33 +7,71 @@ const BASE_URL = 'http://127.0.0.1:8000';
 function HistoryOrder() {
     const { restaurant_name } = useParams();
     const [restaurantDetail, setRestaurantDetail] = useState(null); // กำหนดค่าเริ่มต้นเป็น null
-
-    useEffect(() => {
-        async function fetchRestaurant(restaurant_name) {
-            try {
-                const restaurnat_response = await axios.get(`${BASE_URL}/show_restaurant_detail/${restaurant_name}`);
-                if (restaurnat_response.data) {
-                    setRestaurantDetail(restaurnat_response.data);
-                }
-                
-            } catch (error) {
-                console.log('error', error);
+    const [finishedOrderList, setFinishedOrderList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    async function fetchRestaurant(restaurant_name) {
+        try {
+            setIsLoading(true)
+            const restaurant_response = await axios.get(`${BASE_URL}/show_restaurant_detail_by_name/${restaurant_name}`);
+            if (restaurant_response.data) {
+                setRestaurantDetail(restaurant_response.data);
             }
+        } catch (error) {
+            console.log('error', error);
         }
-
-        
-        
+        finally {
+            setIsLoading(false);
+        }
+    }
+    async function fetchFinishedOrderList(restaurantDetail) {
+        try {
+            const finished_order_response = await axios.get(`${BASE_URL}/show_finished_order_list_in_restaurant/${restaurantDetail.Restaurant_ID}`);
+            if (finished_order_response.data) {
+                setFinishedOrderList(finished_order_response.data);
+            }
+        } catch (error) {
+            console.log('error', error);
+        }
+    }
+    
+    useEffect(() => {
         fetchRestaurant(restaurant_name);
     }, [restaurant_name]);
+    
+    useEffect(() => {
+        if (restaurantDetail) {
+            fetchFinishedOrderList(restaurantDetail);
+        }
+    }, [restaurantDetail]);
+
     return (
-        <div className='restaurant-container'>
+        <>
+            <div className='restaurant-container'>
                 {restaurantDetail && ( // เช็คว่ามีค่าข้อมูลร้านอาหารหรือไม่ก่อนที่จะแสดงผล
                     <>
                         <p>Restaurant Name: {restaurantDetail.Restaurant_Name}</p>
+                        <p>Location: {restaurantDetail.Restaurant_Location}</p>
+                        <p>Rate: {restaurantDetail.Rate}</p>
                     </>
                 )}
             </div>
-    );
+            <div>
+                <h2>Requested Orders:</h2>
+                {finishedOrderList[restaurant_name] && finishedOrderList[restaurant_name].map(order => (
+                    <button className='order-button' key={order.Order_ID}>
+                        <p>Order ID: {order.Order_ID}</p>
+                        <p>Customer: {order.Customer}</p>
+                        <p>Rider: {order.Rider}</p>
+                        <p>Restaurant: {order.Restaurant}</p>
+                        <p>Food: {order.Food.join(', ')}</p>
+                        <p>Order State: {order.Order_State}</p>
+                        <p>Payment: {order.Payment}</p>
+                    </button>
+                    
+                ))}
+            </div>
+        </>
+    )
 }
 
 export default HistoryOrder;
