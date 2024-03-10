@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -11,7 +12,7 @@ function RequestOrder() {
     const [isLoading, setIsLoading] = useState(true);
     async function fetchRestaurant(restaurant_name) {
         try {
-            const restaurant_response = await axios.get(`${BASE_URL}/show_restaurant_detail_by_name/${restaurant_name}`);
+            const restaurant_response = await api.get(`${BASE_URL}/restaurant/show_restaurant_detail_by_name/${restaurant_name}`);
             setIsLoading(false)
             if (restaurant_response.data) {
                 setRestaurantDetail(restaurant_response.data);
@@ -26,7 +27,7 @@ function RequestOrder() {
     async function fetchRequestOrderList(restaurantDetail) {
         try {
             setIsLoading(false)
-            const request_order_response = await axios.get(`${BASE_URL}/show_request_order_list_in_restaurant/${restaurantDetail.Restaurant_ID}`);
+            const request_order_response = await api.get(`${BASE_URL}/restaurant/show_request_order_list_in_restaurant/${restaurantDetail.Restaurant_ID}`);
             if (request_order_response.data) {
                 setRequestOrderList(request_order_response.data);
             }

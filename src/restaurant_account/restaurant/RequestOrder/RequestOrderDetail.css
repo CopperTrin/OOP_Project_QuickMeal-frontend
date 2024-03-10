@@ -1,0 +1,11 @@
+.OrderDetail {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.OrderDetail p {
+    margin: 5px 0;
+}

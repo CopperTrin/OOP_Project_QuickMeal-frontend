@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axious from 'axios'
+import app from '../../../api'
 
 const BASE_URL = 'http://127.0.0.1:8000'
 
@@ -12,7 +13,7 @@ function Menu() {
     async function fetchMenu(restaurant_name) {
         try {
             setIsLoading(true);
-            const response = await axious.get(`${BASE_URL}/${restaurant_name}`)
+            const response = await app.get(`${BASE_URL}/${restaurant_name}`)
             setMenues(response.data)
         }
         catch (error) {
@@ -26,7 +27,7 @@ function Menu() {
     async function deleteMenu(name_menu) {
         try {
             setIsLoading(true)
-            await axious.delete(`${BASE_URL}/${restaurant_name}/${name_menu}`)
+            await app.delete(`${BASE_URL}/${restaurant_name}/${name_menu}`)
             await fetchMenu(restaurant_name)
         } catch (error) {
             console.log('error', error)

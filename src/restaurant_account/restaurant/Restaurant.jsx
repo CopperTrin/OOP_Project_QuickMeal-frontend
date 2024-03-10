@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
+import Cookies from 'js-cookie';
 import './Restaurant.css';
+import api from '../../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -14,10 +16,8 @@ function Restaurant() {
         async function fetchRestaurant(restaurant_name) {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`${BASE_URL}/show_restaurant_detail_by_name/${restaurant_name}`);
-                if (response.data) {
-                    setRestaurantDetail(response.data);
-                }
+                const response = await api.get(`http://127.0.0.1:8000/restaurant/show_restaurant_detail_by_name/${restaurant_name}`);
+                setRestaurantDetail(response.data);
             } catch (error) {
                 console.log('error', error);
             }
@@ -26,11 +26,9 @@ function Restaurant() {
             }
         }
 
-
-
         fetchRestaurant(restaurant_name);
     }, [restaurant_name]);
-
+    console.log(restaurantDetail);
     return (
         <>
             {isLoading && (<p className="border border-gray-200 p-10 rounded-md bg-white flex flex-col justify-center items-centertext-2xl font-bold mb-1">Loading..</p>)}

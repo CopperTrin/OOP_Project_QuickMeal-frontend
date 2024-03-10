@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css'
 import starLogo from '../assets/star.svg'
 import lensLogo from '../assets/lens.svg'
+import api from '../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -16,9 +17,9 @@ export function App() {
       setIsLoading(true);
       let response;
       if (key === '') {
-        response = await axios.get(`${BASE_URL}/show/restaurant`);
+        response = await api.get(`${BASE_URL}/show/restaurant`);
       } else {
-        response = await axios.get(`${BASE_URL}/search/${key}`);
+        response = await api.get(`${BASE_URL}/search/${key}`);
       }
       if (response.status === 200){
       setTodos(response.data);

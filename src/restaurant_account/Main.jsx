@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 import './Main.css';
+import Cookies from 'js-cookie';
+import api from '../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -23,7 +25,7 @@ function RestaurantAccount() {
                 if (profile_response.data) {
                     setProfile(profile_response.data);
                 }
-            } 
+            }
             catch (error) {
                 console.log('error', error);
             }

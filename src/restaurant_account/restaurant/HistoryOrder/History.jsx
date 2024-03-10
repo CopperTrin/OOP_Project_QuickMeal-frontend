@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import api from '../../../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -12,7 +13,7 @@ function HistoryOrder() {
     async function fetchRestaurant(restaurant_name) {
         try {
             setIsLoading(true)
-            const restaurant_response = await axios.get(`${BASE_URL}/show_restaurant_detail_by_name/${restaurant_name}`);
+            const restaurant_response = await api.get(`${BASE_URL}/restaurant/show_restaurant_detail_by_name/${restaurant_name}`);
             if (restaurant_response.data) {
                 setRestaurantDetail(restaurant_response.data);
             }
@@ -25,7 +26,7 @@ function HistoryOrder() {
     }
     async function fetchFinishedOrderList(restaurantDetail) {
         try {
-            const finished_order_response = await axios.get(`${BASE_URL}/show_finished_order_list_in_restaurant/${restaurantDetail.Restaurant_ID}`);
+            const finished_order_response = await api.get(`${BASE_URL}/restaurant/show_finished_order_list_in_restaurant/${restaurantDetail.Restaurant_ID}`);
             if (finished_order_response.data) {
                 setFinishedOrderList(finished_order_response.data);
             }
