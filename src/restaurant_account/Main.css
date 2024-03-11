@@ -68,3 +68,21 @@ body {
 .button:hover {
     background-color: #45a049;
 }
+
+.restaurant-contain {
+    background-color: darkgreen;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    background-color: red !important;
+    color: white !important;
+    border: none !important;
+    padding: 5px 10px !important;
+    cursor: pointer !important;
+}
+
+.delete-button:hover {
+    background-color: #811111 !important;
+}

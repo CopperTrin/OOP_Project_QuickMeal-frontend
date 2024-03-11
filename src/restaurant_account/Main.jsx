@@ -12,27 +12,27 @@ function RestaurantAccount() {
     const [profile, setProfile] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                setIsLoading(true)
-                const restaurant_response = await axios.get(`${BASE_URL}/restaurant_account/${account_id}`);
-                if (restaurant_response.data[account_id]) {
-                    setRestaurants(restaurant_response.data[account_id]);
-                }
-                const profile_response = await axios.get(`${BASE_URL}/show/profile/${account_id}`);
-                if (profile_response.data) {
-                    setProfile(profile_response.data);
-                }
+    async function fetchData() {
+        try {
+            setIsLoading(true)
+            const restaurant_response = await axios.get(`${BASE_URL}/restaurant_account/${account_id}`);
+            if (restaurant_response.data[account_id]) {
+                setRestaurants(restaurant_response.data[account_id]);
             }
-            catch (error) {
-                console.log('error', error);
-            }
-            finally {
-                setIsLoading(false);
+            const profile_response = await axios.get(`${BASE_URL}/show/profile/${account_id}`);
+            if (profile_response.data) {
+                setProfile(profile_response.data);
             }
         }
-
+        catch (error) {
+            console.log('error', error);
+        }
+        finally {
+            setIsLoading(false);
+        }
+    }
+    
+    useEffect(() => {
         fetchData();
     }, [account_id]);
 
@@ -52,6 +52,9 @@ function RestaurantAccount() {
                                     Pocket
                                 </button>
                             </Link>
+                            <button className="button">
+                                Add Restaurant
+                            </button>
                         </div>
                     )}
                 </div>
@@ -60,13 +63,18 @@ function RestaurantAccount() {
                         <div>
                             <h2>Restaurants Information</h2>
                             {restaurants.map((restaurant, index) => (
-                                <Link to={`/${restaurant.Restaurant_Name}`} key={index}>
-                                    <button>
-                                        <h3>Name: {restaurant.Restaurant_Name}</h3>
-                                        <p>Location: {restaurant.Restaurant_Location}</p>
-                                        <p>Rate: {restaurant.Rate}</p>
+                                <div className='restaurant-contain' key={index}>
+                                    <Link to={`/${restaurant.Restaurant_Name}`} >
+                                        <button>
+                                            <h3>Name: {restaurant.Restaurant_Name}</h3>
+                                            <p>Location: {restaurant.Restaurant_Location}</p>
+                                            <p>Rate: {restaurant.Rate}</p>
+                                        </button>
+                                    </Link>
+                                    <button className="delete-button">
+                                        Delete
                                     </button>
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     )}

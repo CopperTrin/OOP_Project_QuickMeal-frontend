@@ -1,24 +1,19 @@
-import axios, { AxiosHeaders } from 'axios';
-import Cookies from 'js-cookie';
-
-const BASE_URL = 'http://127.0.0.1:8000';
+import axios from "axios";
+import Cookies from "js-cookie";
 
 function getHeaders() {
-    if (typeof window !== "undefined") {
-        const token = Cookies.get("token");
-        if (token) {
-            const headers = new AxiosHeaders({
-                Authorization: `Bearer ${token}`,
-            });
-            return headers;
-        }
+  if (typeof window !== "undefined") {
+    const token = Cookies.get("token");
+    if (token) {
+      return { Authorization: `Bearer ${token}` };
     }
-    return new AxiosHeaders();
+  }
+  return {};
 }
 
 const api = axios.create({
-    baseURL: BASE_URL,
-    headers: getHeaders(),
+  baseURL: 'http://127.0.0.1:8000',
+  headers: getHeaders(),
 });
 
 export default api;
