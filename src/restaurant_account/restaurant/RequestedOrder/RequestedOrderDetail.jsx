@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import './RequestOrderDetail.css'; // นำเข้าไฟล์ CSS
 const BASE_URL = 'http://127.0.0.1:8000';
 import api from '../../../api';
 
-function RequestOrderDetail() {
+function RequestedOrderDetail() {
     const { restaurant_name, order_id } = useParams();
     const [restaurantDetail, setRestaurantDetail] = useState(null);
     const [orderDetail, setOrderDetail] = useState(null);
@@ -30,29 +29,6 @@ function RequestOrderDetail() {
         }
     }
 
-    async function fetchAccept(order_id) {
-        try {
-            const accept_response = await api.put(`${BASE_URL}/restaurant/${restaurantDetail.Restaurant_ID}/accept/${order_id}`);
-            if (accept_response.data) {
-                alert('Accept Success')
-            }
-        } catch (error) {
-            console.log('error', error);
-        }
-    }
-
-    async function fetchDeny(order_id) {
-        try {
-            const deny_response = await api.put(`${BASE_URL}/restaurant/${restaurantDetail.Restaurant_ID}/deny/${order_id}`);
-            if (deny_response.data) {
-                alert('Deny Success');
-            }
-
-        }
-        catch (error) {
-            console.log('error', error);
-        }
-    }
 
     useEffect(() => {
         fetchRestaurant(restaurant_name);
@@ -62,11 +38,10 @@ function RequestOrderDetail() {
         fetchOrderDetail(order_id);
     }, [order_id]);
 
-
     return (
         <>
-            <div>
-                <h1>RequestedOrderDetail</h1>
+        <div>
+        <h1>RequestedOrderDetail</h1>
                 {orderDetail && (
                     <div className="OrderDetail"> {/* ใช้ className เพื่อเรียกใช้งาน CSS */}
                         <p>Order ID: {order_id}</p>
@@ -78,32 +53,10 @@ function RequestOrderDetail() {
                         <p>Payment: {orderDetail.Payment}</p>
                     </div>
                 )}
-                {orderDetail && orderDetail.Order_State === 'get_res' && (
-                    <Link to={`/${restaurant_name}`}>
-                        <button
-                            onClick={async () => {
-                                await fetchDeny(order_id);
-                            }}
-                        >
-                            Deny
-                        </button>
-                    </Link>
-                )}
-                {orderDetail && orderDetail.Order_State !== 'get_res' && (
-                    <Link to={`/${restaurant_name}`}>
-                        <button
-                            onClick={async () => {
-                                await fetchAccept(order_id);
-                            }}
-                        >
-                            Accept
-                        </button>
-                    </Link>
-                )}
-            </div>
+        </div>
         </>
-
     );
+
 }
 
-export default RequestOrderDetail;
+export default RequestedOrderDetail;

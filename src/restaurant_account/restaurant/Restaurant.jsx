@@ -63,7 +63,7 @@ function Restaurant() {
                             </button>
                         </Link>
                         <br />
-                        <Link to={`/${restaurant_name}/history`}>
+                        <Link to={`/${restaurant_name}/finished_order`}>
                             <button>
                                 History
                             </button>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios, { AxiosHeaders } from 'axios';
 import './Main.css';
-import Cookies from 'js-cookie';
 import api from '../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
@@ -48,6 +47,11 @@ function RestaurantAccount() {
                             <p>Fullname: {profile.Fullname}</p>
                             <p>Email: {profile.Email}</p>
                             <p>Phone: {profile.Phone}</p>
+                            <Link to={`/${account_id}/pocket`}>
+                                <button className="button">
+                                    Pocket
+                                </button>
+                            </Link>
                         </div>
                     )}
                 </div>

@@ -5,7 +5,7 @@ import api from '../../../api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
-function HistoryOrder() {
+function FinishedOrder() {
     const { restaurant_name } = useParams();
     const [restaurantDetail, setRestaurantDetail] = useState(null); // กำหนดค่าเริ่มต้นเป็น null
     const [finishedOrderList, setFinishedOrderList] = useState([]);
@@ -59,6 +59,7 @@ function HistoryOrder() {
             <div>
                 <h2>Requested Orders:</h2>
                 {finishedOrderList[restaurant_name] && finishedOrderList[restaurant_name].map(order => (
+                    <Link to={`/${restaurant_name}/finished_order/${order.Order_ID}`} key={order.Order_ID}>
                     <button className='order-button' key={order.Order_ID}>
                         <p>Order ID: {order.Order_ID}</p>
                         <p>Customer: {order.Customer}</p>
@@ -68,11 +69,11 @@ function HistoryOrder() {
                         <p>Order State: {order.Order_State}</p>
                         <p>Payment: {order.Payment}</p>
                     </button>
-                    
+                    </Link>
                 ))}
             </div>
         </>
     )
 }
 
-export default HistoryOrder;
+export default FinishedOrder;
