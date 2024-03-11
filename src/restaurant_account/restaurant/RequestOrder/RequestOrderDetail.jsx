@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './RequestOrderDetail.css'; // นำเข้าไฟล์ CSS
 const BASE_URL = 'http://127.0.0.1:8000';
-import api from '../../../api';
+import api from '../../../api/api';
 
 function RequestOrderDetail() {
     const { restaurant_name, order_id } = useParams();

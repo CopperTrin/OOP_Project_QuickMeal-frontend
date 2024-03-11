@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 const BASE_URL = 'http://127.0.0.1:8000';
-import api from '../../../api';
+import api from '../../../api/api';
 
 function FinishedOrderDetail() {
     const { restaurant_name, order_id } = useParams();

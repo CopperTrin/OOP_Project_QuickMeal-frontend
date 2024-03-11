@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css'
 import starLogo from '../assets/star.svg'
 import lensLogo from '../assets/lens.svg'
-import api from '../api';
+import api from '../api/api';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
