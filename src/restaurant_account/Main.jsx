@@ -15,11 +15,11 @@ function RestaurantAccount() {
     async function fetchData() {
         try {
             setIsLoading(true)
-            const restaurant_response = await axios.get(`${BASE_URL}/restaurant_account/${account_id}`);
+            const restaurant_response = await api.get(`${BASE_URL}/restaurant_account/${account_id}`);
             if (restaurant_response.data[account_id]) {
                 setRestaurants(restaurant_response.data[account_id]);
             }
-            const profile_response = await axios.get(`${BASE_URL}/show/profile/${account_id}`);
+            const profile_response = await api.get(`${BASE_URL}/show/profile/${account_id}`);
             if (profile_response.data) {
                 setProfile(profile_response.data);
             }
