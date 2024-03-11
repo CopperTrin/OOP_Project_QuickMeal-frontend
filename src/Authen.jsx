@@ -7,7 +7,7 @@ const api = axios.create({
   baseURL: 'http://127.0.0.1:8000',
 });
 
-const Authen = () => {
+const LoginForm = () => {
   
     const [formData, setFormData] = useState({
     username: '',
@@ -71,4 +71,4 @@ const Authen = () => {
   );
 };
 
-export default Authen;
+export default LoginForm;
