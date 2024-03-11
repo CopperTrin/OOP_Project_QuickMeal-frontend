@@ -42,6 +42,15 @@ function RequestedOrderDetail() {
         }
     }
 
+    async function cancelOrder() {
+        try {
+            const response = await api.post(`${BASE_URL}/cancel_by_restaurant/${restaurantDetail.Restaurant_ID}/${order_id}/${selectedFood}`);
+        }
+        catch (error) {
+            console.log('error', error);
+        }
+    }
+
     useEffect(() => {
         fetchRestaurant(restaurant_name);
     }, [restaurant_name]);
